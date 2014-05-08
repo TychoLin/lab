@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>test rest api</title>
+<script>
+function makeHttpObject() {
+    try {
+        return new XMLHttpRequest();
+    } catch (error) {}
+    try {
+        return new ActiveXObject("Msxml2.XMLHTTP");
+    } catch (error) {}
+    try {
+        return new ActiveXObject("Microsoft.XMLHTTP");
+    } catch (error) {}
+
+    throw new Error("Could not create HTTP request object.");
+}
+
+var request = makeHttpObject();
+request.open("delete", "rest.php/user/123", true);
+request.send("test=123");
+request.onreadystatechange = function () {
+    if (request.readyState == 4) {
+        console.log(request);
+        document.body.innerHTML = request.responseText;
+	}
+};
+
+Function.prototype.method = function (name, func) {
+    this.prototype[name] = func;
+};
+
+function obj() {}
+console.log(obj);
+obj.method("test", function () {
+    console.log(123);
+});
+var abc = new obj();
+abc.test();
+
+console.log(Function.prototype);
+console.log(Object.prototype);
+
+Object.prototype.method = function (name, func) {
+    this[name] = func;
+};
+var fruit = {};
+console.log(fruit);
+fruit.method("test", function () {
+    console.log(456);
+});
+fruit.test();
+</script>
+</head>
+<body>test rest api</body>
+</html>
