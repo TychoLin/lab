@@ -18,7 +18,7 @@ function makeHttpObject() {
 }
 
 var request = makeHttpObject();
-request.open("delete", "rest.php/user/123", true);
+request.open("delete", "rest.php/book/123", true);
 request.send("test=123");
 request.onreadystatechange = function () {
     if (request.readyState == 4) {
@@ -26,31 +26,6 @@ request.onreadystatechange = function () {
         document.body.innerHTML = request.responseText;
 	}
 };
-
-Function.prototype.method = function (name, func) {
-    this.prototype[name] = func;
-};
-
-function obj() {}
-console.log(obj);
-obj.method("test", function () {
-    console.log(123);
-});
-var abc = new obj();
-abc.test();
-
-console.log(Function.prototype);
-console.log(Object.prototype);
-
-Object.prototype.method = function (name, func) {
-    this[name] = func;
-};
-var fruit = {};
-console.log(fruit);
-fruit.method("test", function () {
-    console.log(456);
-});
-fruit.test();
 </script>
 </head>
 <body>test rest api</body>

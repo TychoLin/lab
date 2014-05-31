@@ -19,12 +19,10 @@ class Control {
 		503 => "Service Unavailable"
 	);
 
-	public static function response() {
+	public static function setHeader() {
 		$statusCode = self::$statusCode;
 		$message = self::$status[$statusCode];
 		header("HTTP/1.1 {$statusCode} {$message}");
-		echo "{$statusCode} {$message}";
-		exit;
 	}
 }
 
@@ -75,7 +73,7 @@ class RestControl extends Control {
 
 	public function run() {
 		if ($this->control === false) {
-			return $this->index();
+			self::$statusCode = 404;
 		}
 
 		if (empty($this->segments)) {
@@ -87,9 +85,9 @@ class RestControl extends Control {
 			self::$statusCode = 405;
 		}
 
+		self::setHeader();
 		$args = $this->segments;
 		$this->control->$method($args);
-		self::response();
 	}
 }
 
