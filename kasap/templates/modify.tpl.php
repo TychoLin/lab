@@ -36,9 +36,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<tr>
 		<td>gender</td>
 		<td>
-			<?php ($row[0]['gender'] == 'M') ? $checked = array('M' => 'checked="checked"', 'W' => '') : $checked = array('M' => '', 'W' => 'checked="checked"') ?>
-			<input type="radio" id="men" name="gender" value="M" <?php echo $checked['M'] ?> /><label for="men">men</label>
-			<input type="radio" id="women" name="gender" value="W" <?php echo $checked['W'] ?> /><label for="women">women</label>
+			<?php ($row[0]['gender'] == 1) ? $checked = array(1 => 'checked="checked"', 2 => '') : $checked = array(1 => '', 2 => 'checked="checked"') ?>
+			<input type="radio" id="men" name="gender" value=1 <?php echo $checked[1] ?> /><label for="men">men</label>
+			<input type="radio" id="women" name="gender" value=2 <?php echo $checked[2] ?> /><label for="women">women</label>
 		</td>
 	</tr>
 	<tr>

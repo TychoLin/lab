@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	);
 	$user = new user();
 	$user->insert($item);
-	redirect('.');
+	// redirect('.');
 }
 ?>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -28,8 +28,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	<tr>
 		<td>gender</td>
 		<td>
-			<input type="radio" id="men" name="gender" value="M" checked="checked" /><label for="men">men</label>
-			<input type="radio" id="women" name="gender" value="W" /><label for="women">women</label>
+			<input type="radio" id="men" name="gender" value="1" checked="checked" /><label for="men">men</label>
+			<input type="radio" id="women" name="gender" value="2" /><label for="women">women</label>
 		</td>
 	</tr>
 	<tr>

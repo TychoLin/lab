@@ -4,7 +4,7 @@ class db {
 
 	private function __construct() {
 		try {
-			self::$_db = new PDO('mysql:dbname=test;host=localhost', 'root', '9999');
+			self::$_db = new PDO('mysql:dbname=labdb;host=localhost', 'root', '9999');
 			self::$_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		} catch (PDOException $e) {
 			echo 'Connection failed: '.$e->getMessage();
@@ -125,7 +125,7 @@ class auth {
 	}
 	
 	public function login($account, $password) {
-		$sql = "SELECT id, email, gender, nickname, level FROM user WHERE email=:email AND pw=:pw";
+		$sql = "SELECT id, email, gender, nickname FROM user WHERE email=:email AND pw=:pw";
 		$params = array(
 			':email' => $account,
 			':pw' => md5($password)
@@ -159,7 +159,7 @@ class auth {
 		redirect('login.php');
 	}
 	
-	public function createUser($account, $password, $level = 'user') {
+	public function createUser($account, $password) {
 		$sql = "SELECT COUNT(*) FROM user WHERE email=:email";
 		$params = array(
 			':email' => $account
@@ -178,7 +178,6 @@ class auth {
 		$item = array(
 			'email' => $account,
 			'pw' => md5($password),
-			'level' => $level
 		);
 		$user->insert($item);
 		return true;

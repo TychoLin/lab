@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>sokoban</title>
+<meta charset="UTF-8">
+<style>
+@media screen and (min-width: 1200px) {
+}
+
+@media screen and (min-width: 768px) and (max-width: 979px) {
+}
+
+@media screen and (max-width: 767px) {
+}
+
+@media screen and (max-device-width: 480px) {
+}
+
+body {
+	font-family: Georgia, serif;
+}
+
+table.sokoban {
+	border-collapse: collapse;
+}
+
+table.sokoban td {
+	width: 32px;
+	height: 32px;
+	padding: 0px;
+	vertical-align: middle;
+	text-align: center;
+	background-repeat:no-repeat;
+}
+
+table.sokoban td img {
+	float: left;
+}
+
+table.sokoban td.empty {
+	background-image: url(img/empty.png);
+}
+
+table.sokoban td.wall {
+	background-image: url(img/wall.png);
+}
+
+table.sokoban td.exit {
+	background-image: url(img/exit.png);
+}
+
+#scoreContainer {
+	float: left;
+	margin-right: 20px;
+}
+
+#score {
+	float: left;
+	margin-right: 3px;
+	text-align: center;
+	width: 30px;
+	position: relative;
+	color: red;
+	text-shadow: 0.15em 0.2em 0.1em black;
+	font-weight: bold;
+}
+
+#gameUI {
+}
+
+#reset {
+}
+</style>
+<!-- <script type="text/javascript" src="map.js"></script> -->
+</head>
+<body>
+<script>
+function loadScript(url, callback) {
+    var script = document.createElement("script")
+    script.type = "text/javascript";
+
+    if (script.readyState) { //IE
+        script.onreadystatechange = function () {
+            if (/loaded|complete/i.test(script.readyState)) {
+                script.onreadystatechange = null;
+                callback();
+            }
+        };
+    } else { //Others
+        script.onload = function () {
+            callback();
+        };
+    }
+
+    script.src = url;
+    document.body.appendChild(script);
+}
+
+window.addEventListener("load", function () {
+	loadScript("map.js", function () {
+		loadScript("core.js", function () {
+			try {
+				new SokobanGame();
+			} catch (error) {
+				console.log(error.stack);
+			}
+		});
+	});
+
+	for (var name in window) {
+		if (/width/i.test(name)) {
+			console.log(name + ": " + window[name]);
+		}
+	}
+}, false);
+</script>
+<p>hello sokoban!</p>
+</body>
+</html>
